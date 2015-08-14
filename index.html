@@ -1,11 +1,20 @@
 ﻿<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html ng-app="mainApp" xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<title>ACS Challenge - Jay Jordan</title>
 	
 	<!-- AngularJS Begin-->
-	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/angular_material/0.10.1/angular-material.min.js"></script>
+	<script src="Scripts/angular.min.js"></script>
+	<script src="Scripts/angular-route.min.js"></script>
+	<script src="Controllers/mainApp.js"></script>
+	<script src="Controllers/eventModule.js"></script>
+	<script src="nav/navModule.js"></script>
+	<script src="slider/sliderModule.js"></script>
+	<script src="footer/footerModule.js"></script>
+	<script src="blog/blogModule.js"></script>
+
+	<script src="Scripts/angular-ui/ui-bootstrap.js"></script>
+	<script src="Scripts/angular-ui/ui-bootstrap-tpls.js"></script>
 	<!-- AngularJS End-->
 	
 	<!-- jQuery Begin-->
@@ -23,7 +32,7 @@
 
 </head>
 <body>
-
+	<ng-view></ng-view>
 </body>
 </html>
 
