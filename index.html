@@ -2,25 +2,21 @@
 <html ng-app="mainApp" xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<title>ACS Challenge - Jay Jordan</title>
-	
-	<!-- AngularJS Begin-->
-	<script src="Scripts/angular.min.js"></script>
-	<script src="Scripts/angular-route.min.js"></script>
-	<script src="Controllers/mainApp.js"></script>
-	<script src="Controllers/eventModule.js"></script>
-	<script src="nav/navModule.js"></script>
-	<script src="slider/sliderModule.js"></script>
-	<script src="footer/footerModule.js"></script>
-	<script src="blog/blogModule.js"></script>
 
-	<script src="Scripts/angular-ui/ui-bootstrap.js"></script>
-	<script src="Scripts/angular-ui/ui-bootstrap-tpls.js"></script>
+	<!-- AngularJS Begin-->
+	<script src="scripts/angular.min.js"></script>
+	<script src="scripts/angular-route.min.js"></script>
+	<script src="controllers/mainApp.js"></script>
+	<script src="controllers/eventModule.js"></script>
+	<script src="nav/navModule.js"></script>
+	<script src="footer/footerModule.js"></script>
+
+	<script src="scripts/angular-ui/ui-bootstrap.js"></script>
+	<script src="scripts/angular-ui/ui-bootstrap-tpls.js"></script>
 	<!-- AngularJS End-->
-	
 	<!-- jQuery Begin-->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 	<!-- jQuery End-->
-	
 	<!-- Bootstrap Begin-->
 	<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
@@ -32,7 +28,9 @@
 
 </head>
 <body>
-	<ng-view></ng-view>
+<my-nav></my-nav>
+<ng-view></ng-view>
+<!--<my-foot></my-foot>-->
 </body>
 </html>
 

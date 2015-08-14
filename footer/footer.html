@@ -1,9 +1,52 @@
-﻿<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-    <title></title>
-</head>
-<body>
-
-</body>
-</html>
+﻿<footer>
+	<section class="twitter_feed_wrapper">
+		<div class="container">
+			<div class="row wow animated fadeInUp">
+				<div class="twitter_feed_icon col-sm-1 col-md-1"><a href="#twitter"><i class="fa fa-twitter"></i></a></div>
+				<div class="col-sm-11 col-md-11">
+					<blockquote>
+						<p>This Clean, Flexible, Multipurpose Bootstrap 3.1.1 HTML5 Template will soon become a Wordpress theme with great support!  <a href="#">http://unhub.com/LIot</a></p>
+						— LeonArt (@leonartgr) <a href="https://twitter.com/plethorathemes/">April 4, 2014</a>
+					</blockquote>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section id="footer_teasers_wrapper">
+		<div class="container">
+			<div class="row">
+				<div class="footer_teaser col-sm-4 col-md-4">
+					<h3>About us</h3>
+					<p>Give us a call. We would love to hear from you.</p>
+					<p><i class="fa fa-map-marker"></i> PO Box 5599</p>
+					<p><i class="fa fa-phone"></i> (+1) 888 332-9570</p>
+					<p><i class="fa fa-print"></i> (+1) 888 332-9640</p>
+					<p><i class="fa fa-envelope"></i> CareerServices@EmployReward.com</p>
+				</div>
+				<div class="footer_teaser col-sm-4 col-md-4" ng-controller="FeedCtrl">
+					<h3>Latest News</h3>
+					<ul class="media-list">
+						<li class="media" ng-repeat="feed in feeds | limitTo:2 | orderBy:'-UpdateTime'">
+							<a ng-href="#/post/{{feed.ID}}" class="media-photo" style="background-image:url(http://ers-website-api.azurewebsites.net/uploadedfiles/images/blog/{{feed.Image}})"></a> <a ng-href="#/post/{{feed.ID}}" class="media-date">{{feed.UpdateTime | date:'d'}}<span>{{feed.UpdateTime | date:'MMM'}}</span></a>
+							<h5 class="media-heading"><a ng-href="#/post/{{feed.ID}}">{{feed.Title | limitTo:50}}</a></h5>
+							<!--<p>{{feed.Content | limitTo:70}}...</p>-->
+							<div ng-bind-html="to_trusted_trunc(feed)"><!-- Pass entire blog object to function --></div>
+						</li>
+					</ul>
+				</div>
+				<div class="footer_teaser col-sm-4 col-md-4" id="latest-flickr-restart_Theme/images">
+					<h3>Third Section (optional)</h3>
+					<ul></ul> <!--<p>All photos © by <a href="http://www.dimitragiannouka.com" target="_blank">Dimitra Giannouka</a>.</p>-->
+				</div>
+			</div>
+		</div>
+	</section>
+	<section class="copyright">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-6 col-md-6">EmployReward Solutions ©2015 all rights reserved </div>
+				<!--<div class="text-right col-sm-6 col-md-6"> Designed by <a href="http://www.leonart.gr">LeonArt</a> </div>-->
+			</div>
+		</div>
+	</section>
+</footer>
