@@ -1,22 +1,62 @@
 ﻿<div class="main">
 	<div class="container">
-		<h1>Contact List Page</h1>
 		<div class="row" ng-controller="ContactViewCtrl">
+			<div>
+				<h1>Contact Directory</h1>
+				<label>Search: </label>
+				<input ng-model="search" placeholder="Search for contacts" autofocus />
+			</div>
+			<br />
 			<table class="table table-bordered table-hover">
 				<tr>
-					<th>Name</th>
-					<th>Company</th>
-					<th>Address</th>
-					<th>Phone</th>
-					<th>Work Phone</th>
-					<th>Email</th>
-					<th>URL</th>
+					<th>
+
+						<a ng-click="orderByField='first_name'; reverseSort = !reverseSort">
+							First Name <span ng-show="orderByField == 'first_name'"><span ng-show="!reverseSort">^</span><span ng-show="reverseSort">v</span></span>
+						</a>
+					</th>
+					<th>
+						<a ng-click="orderByField='last_name'; reverseSort = !reverseSort">
+							Last Name <span ng-show="orderByField == 'last_name'"><span ng-show="!reverseSort">^</span><span ng-show="reverseSort">v</span></span>
+						</a>
+					</th>
+					<th>
+						<a ng-click="orderByField='company_name'; reverseSort = !reverseSort">
+							Company <span ng-show="orderByField == 'company_name'"><span ng-show="!reverseSort">^</span><span ng-show="reverseSort">v</span></span>
+						</a>
+					</th>
+					<th>
+						<a ng-click="orderByField='address'; reverseSort = !reverseSort">
+							Address <span ng-show="orderByField == 'address'"><span ng-show="!reverseSort">^</span><span ng-show="reverseSort">v</span></span>
+						</a>
+					</th>
+					<th>
+						<a ng-click="orderByField='phone'; reverseSort = !reverseSort">
+							Phone <span ng-show="orderByField == 'phone'"><span ng-show="!reverseSort">^</span><span ng-show="reverseSort">v</span></span>
+						</a>
+					</th>
+					<th>
+						<a ng-click="orderByField='work_phone'; reverseSort = !reverseSort">
+							Work Phone <span ng-show="orderByField == 'work_phone'"><span ng-show="!reverseSort">^</span><span ng-show="reverseSort">v</span></span>
+						</a>
+					</th>
+					<th>
+						<a ng-click="orderByField='email'; reverseSort = !reverseSort">
+							Email <span ng-show="orderByField == 'email'"><span ng-show="!reverseSort">^</span><span ng-show="reverseSort">v</span></span>
+						</a>
+					</th>
+					<th>
+						<a ng-click="orderByField='url'; reverseSort = !reverseSort">
+							URL <span ng-show="orderByField == 'url'"><span ng-show="!reverseSort">^</span><span ng-show="reverseSort">v</span></span>
+						</a>
+					</th>
 				</tr>
-				<tr ng-repeat="c in filteredContacts">
+				<tr ng-repeat="c in filteredContacts | orderBy: orderByField: reverseSort | filter:search">
 					<td>
-						{{c.first_name}} {{c.last_name}}
-						<input type="hidden" id="contactID_{{c.id}}" value="{{c.id}}"/>
+						{{c.first_name}}
+						<input type="hidden" id="contactID_{{c.id}}" value="{{c.id}}" />
 					</td>
+					<td>{{c.last_name}}</td>
 					<td>{{c.company_name}}</td>
 					<td>{{c.address}}, {{c.city}} {{c.state}}, {{c.zip}}</td>
 					<td>{{c.phone}}</td>
