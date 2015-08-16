@@ -1,16 +1,10 @@
 ﻿(function () {
 	angular.module('footerModule', [])
-		 .config([
-
-	function () {
-		console.log("Footer Module::config");
+	.config([function () {
+		//console.log("Footer Module::config");
 	}])
-		 .run([
-
-	function () {
-		console.log("Footer Module::running");
+	.run([function () {
+		//console.log("Footer Module::running");
 	}])
-	// controllers
 	.controller('FootCtrl', []);
-
 })();

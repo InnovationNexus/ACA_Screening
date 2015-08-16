@@ -51,3 +51,51 @@
 			</div>
 		</div>
 	</section>
+
+
+
+
+	from HomeCtrl
+
+	
+
+
+
+//$http({
+//	method: 'GET', url: 'http://challenge.acstechnologies.com/api/contact/', headers: { 'X-Auth-Token': 'pkNClPIgOp1Oo3mRmIAJRwVL9QuIpbSLsaYKZ08w' }
+//})
+//	   .success(function (data) {
+//	   	alert('success!');
+//	   })
+//	   .error(function (data, status, header, config) {
+//	   	alert('fail');
+//	   	console.log(data);
+//	   	console.log(status);
+//	   	console.log(header);
+//	   	console.dir(config);
+//	   });
+
+
+
+
+from contact module
+
+				//$http(req).then(function (response) {
+				//	$scope.contactList = response.data.data;
+
+				//	//console.log(response.data.data[0]);
+				//}, function (response) {
+				//	alert('fail');
+				//});
+
+
+								.success(function (data) {
+						$scope.contactList = data;
+						for (var i = 0; i < data.length; i++) {
+							console.log(data[i]);
+							alert('success');
+						}
+					})
+					.error(function () {
+						alert('fail');
+					});

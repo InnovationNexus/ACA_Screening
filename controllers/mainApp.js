@@ -1,39 +1,27 @@
-﻿angular.module('mainApp', ['ngRoute', 'eventModule', 'navModule', 'footerModule'])
-    .config([
-    '$routeProvider',
-
-function ($routeProvider) {
-	//console.log($routeProvider);
-	$routeProvider.
-	when('/', {
-		templateUrl: 'home.html',
-		controller: 'HomeCtrl'
-	}).
-	when('/home', {
-		templateUrl: 'home.html',
-		controller: 'HomeCtrl'
-	}).
-	when('/about', {
-		templateUrl: 'about.html',
-		controller: 'AboutCtrl'
-	}).
-	otherwise({
-		redirectTo: '/home'
-	});
-	//console.log('Configuration hook');
-}])
-    .run([
-
-function () {
-	/* Run is when the app gets kicked off*/
-	//console.log('Run hook');
-}])
-// controllers
-.controller('HomeCtrl', [
-    '$scope', function ($scope) {
-    	console.log('Home Ctrl Loaded');
+﻿angular.module('mainApp', ['ngRoute', 'eventModule', 'navModule', 'footerModule', 'contactModule'])
+    .config(['$routeProvider', function ($routeProvider) {
+    	$routeProvider.
+		when('/', {
+			templateUrl: 'contactView.html',
+			controller: 'ContactViewCtrl'
+		}).
+		when('/contactView', {
+			templateUrl: 'contactView.html',
+			controller: 'ContactViewCtrl'
+		}).
+		when('/about', {
+			templateUrl: 'about.html',
+			controller: 'AboutCtrl'
+		}).
+		otherwise({
+			redirectTo: '/contactView'
+		});
+    	//console.log('Configuration hook');
     }])
-    .controller('AboutCtrl', [
-    '$scope', function ($scope) {
+    .run([function () {
+    	/* Run is when the app gets kicked off*/
+    	//console.log('Run hook');
+    }])
+    .controller('AboutCtrl', [function () {
     	console.log('About Ctrl Loaded');
     }]);

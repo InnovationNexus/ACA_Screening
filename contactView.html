@@ -1,0 +1,33 @@
+﻿<div class="main">
+	<div class="container">
+		<h1>Contact List Page</h1>
+		<div class="row" ng-controller="ContactViewCtrl">
+			<table class="table table-bordered table-hover">
+				<tr>
+					<th>Name</th>
+					<th>Company</th>
+					<th>Address</th>
+					<th>Phone</th>
+					<th>Work Phone</th>
+					<th>Email</th>
+					<th>URL</th>
+				</tr>
+				<tr ng-repeat="c in filteredContacts">
+					<td>
+						{{c.first_name}} {{c.last_name}}
+						<input type="hidden" id="contactID_{{c.id}}" value="{{c.id}}"/>
+					</td>
+					<td>{{c.company_name}}</td>
+					<td>{{c.address}}, {{c.city}} {{c.state}}, {{c.zip}}</td>
+					<td>{{c.phone}}</td>
+					<td>{{c.work_phone}}</td>
+					<td>{{c.email}}</td>
+					<td>{{c.url}}</td>
+				</tr>
+			</table>
+			<div>
+				<pagination total-items="totalItems" ng-model="currentPage" ng-change="pageChanged()" items-per-page="itemsPerPage"></pagination>
+			</div>
+		</div>
+	</div>
+</div>

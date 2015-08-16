@@ -1,15 +1,11 @@
 ﻿(function () {
 	angular.module('navModule', [])
-		 .config([
-
-	function () {
-		console.log("Nav Module::config");
-	}])
-		 .run([
-
-	function () {
-		console.log("Nav Module::running");
-	}])
+		 .config([function () {
+		 	//console.log("Nav Module::config");
+		 }])
+		 .run([function () {
+		 	//console.log("Nav Module::running");
+		 }])
 	// controllers
 	.controller('NavCtrl', [
 		 '$scope', '$location', function ($scope, $location) {
