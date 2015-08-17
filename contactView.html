@@ -50,6 +50,8 @@
 							URL <span ng-show="orderByField == 'url'"><span ng-show="!reverseSort">^</span><span ng-show="reverseSort">v</span></span>
 						</a>
 					</th>
+					<th></th>
+					<th></th>
 				</tr>
 				<!--<tr class="alterTable" ng-repeat="c in filteredContacts | filter:search | orderBy: orderByField: reverseSort">-->
 				<tr class="alterTable" ng-repeat="c in filtered | startFrom:(currentPage-1)*entryLimit | limitTo:entryLimit | orderBy: orderByField: reverseSort">
@@ -64,6 +66,8 @@
 					<td>{{c.work_phone}}</td>
 					<td>{{c.email}}</td>
 					<td>{{c.url}}</td>
+					<td>edit</td>
+					<td>delete</td>
 				</tr>
 			</table>
 			<div>

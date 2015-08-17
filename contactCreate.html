@@ -1,6 +1,6 @@
 ﻿<div class="main" ng-controller="ContactCreateCtrl">
 	<div class="container">
-		<form>
+		<form name="createContactForm">
 			<div>
 				<h1>Create Contact</h1>
 			</div>
@@ -10,7 +10,8 @@
 
 			<div class="row">
 				<div class="col-xs-12 col-md-4">
-					<input ng-model="first_name" class="form-control" name="first_name" placeholder="First Name" type="text" />
+					<input ng-model="first_name" class="form-control" name="first_name" placeholder="First Name" type="text" required />
+					<span style="color: red" ng-show="createContactForm.first_name.$dirty && createContactForm.first_name.$invalid"><span ng-show="createContactForm.first_name.$error.required">First Name is required.</span></span>
 				</div>
 				<div class="col-xs-12 col-md-4">
 					<input ng-model="last_name" class="form-control" name="last_name" placeholder="Last Name" type="text" />
@@ -52,9 +53,8 @@
 			<br />
 			<div class="row">
 				<div class="col-sm-12 col-md-12">
-					<a ng-click="addContact($event)" class="btn send btn-primary">Create Contact</a>
+					<a ng-click="addContact($event)" class="btn send btn-primary" ng-disabled="createContactForm.first_name.$dirty && createContactForm.first_name.$invalid  || createContactForm.first_name.$pristine">Create Contact</a>
 					<input type="reset" class="btn btn-primary" id="reset" value="Reset" />
-					<!--<a ng-click="reset" class="btn btn-primary">Reset</a>-->
 				</div>
 			</div>
 		</form>

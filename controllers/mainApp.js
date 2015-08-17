@@ -5,7 +5,7 @@
 			templateUrl: 'contactView.html',
 			controller: 'ContactViewCtrl'
 		}).
-		when('/contactView', {
+		when('/Contact View', {
 			templateUrl: 'contactView.html',
 			controller: 'ContactViewCtrl'
 		}).

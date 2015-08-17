@@ -16,11 +16,13 @@
 			}
 		})
 		.controller('ContactViewCtrl', ['$scope', '$http', 'filterFilter', function ($scope, $http, filterFilter) {
+			//#region Sort Variables
 			$scope.orderByField = 'first_name';
 			$scope.reverseSort = false;
+			//#endregion
 
-			//#region Get Contact List JSON
-			//Setup Contact List GET Request
+			//#region Contact List JSON
+			//Setup Contact List GET request variable
 			var req = {
 				method: 'GET',
 				url: 'http://challenge.acstechnologies.com/api/contact/',
@@ -33,13 +35,10 @@
 			$http(req).then(function (response) {
 				$scope.contactList = response.data.data;
 
-				//#region Paging - Paging for contact list
+				//#region Paging for contact list
 				$scope.currentPage = 1; //current page
-				$scope.maxSize = 5; //pagination max size
-				$scope.entryLimit = 5; //max rows for data table
-				
-
-
+				$scope.maxSize = 10; //pagination max size
+				$scope.entryLimit = 10; //max rows for data table
 
 				/* init pagination with $scope.list */
 				$scope.noOfPages = Math.ceil($scope.contactList.length / $scope.entryLimit);
@@ -58,7 +57,7 @@
 		}])
 		.controller('ContactCreateCtrl', ['$scope', '$http', function ($scope, $http) {
 			$scope.addContact = function () {
-				//setup Contact Create POST Request
+				//setup Contact Create POST request variable
 				var req = {
 					method: 'POST',
 					url: 'http://challenge.acstechnologies.com/api/contact/',
@@ -80,36 +79,46 @@
 						"url": $scope.url
 					}
 				};
-
+				// Post new Contact
 				$http(req).then(function (response) {
-
-					if (response.data["success"] === false) {
-						console.log(response.data["errors"]["first_name"]);
-
-						//for (var i = 0; i < response.data["errors"].length; i++) {
-						//	alert('test');
-						//}
-					} else {
-						$('#validation').append('<p>You have successfully created a new contact</p>').removeClass("hidden").addClass("alert alert-success");
+					if (response.data["success"] === true) {
+						$('#validation').html('<p>You have successfully created a new contact</p>').removeClass("hidden").addClass("alert alert-success");
+						$('form').find('input[type=text]').val('');
 					}
 				}, function (response) {
 					alert('fail');
 				});
 			};
-
-			//$scope.reset = function () {
-			//	$scope.first_name = "";
-			//			"last_name": $scope.last_name,
-			//			"company_name": $scope.company_name,
-			//			"address": $scope.address,
-			//			"city": $scope.city,
-			//			"state": $scope.state,
-			//			"zip": $scope.zip,
-			//			"phone": $scope.phone,
-			//			"work_phone": $scope.work_phone,
-			//			"email": $scope.email,
-			//			"url": $scope.url
-			//	$('#validation').hide();
-			//};
 		}]);
 })();
+
+
+
+//$scope.reset = function () {
+//	$scope.first_name = "";
+//			"last_name": $scope.last_name,
+//			"company_name": $scope.company_name,
+//			"address": $scope.address,
+//			"city": $scope.city,
+//			"state": $scope.state,
+//			"zip": $scope.zip,
+//			"phone": $scope.phone,
+//			"work_phone": $scope.work_phone,
+//			"email": $scope.email,
+//			"url": $scope.url
+//	$('#validation').hide();
+//};
+
+
+//submit form to trigger validation
+//$('form').submit();
+
+////setup validation
+
+//$('form').validate({
+//	rules: {
+//		first_name: {
+//			required:true	
+//		}
+//	}
+//});

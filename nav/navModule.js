@@ -10,7 +10,7 @@
 	.controller('NavCtrl', [
 		 '$scope', '$location', function ($scope, $location) {
 		 	// Controll Top Navigation menu here
-		 	this.nav = ['Home', 'About', 'Create Contact'];
+		 	this.nav = ['Contact View', 'Create Contact'];
 
 		 	// scope
 		 	$scope.isActive = function (viewLocation) {
