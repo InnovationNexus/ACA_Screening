@@ -1,11 +1,7 @@
 ﻿(function () {
 	angular.module('contactModule', ['ui.bootstrap'])
-		.config([function () {
-			//console.log("Contact Module::running");
-		}])
-		.run([function () {
-			//console.log("Contact Module::running");
-		}])
+		.config([function () { }])
+		.run([function () { }])
 		// filter used for paging and search 
 		.filter('startFrom', function () {
 			return function (input, start) {
@@ -14,7 +10,7 @@
 					return input.slice(start);
 				}
 				return [];
-			}
+			};
 		})
 		// directive creating confirmation message.  must use confirmed-click to call funciton and ng-confirm-click to trigger confirmation box
 		.directive('ngConfirmClick', [function () {
@@ -84,8 +80,8 @@
 
 				$http(delReq).then(function (response) {
 					if (response.data["success"] === true) {
-						$('#validation').html('<p>You have successfully deleted a contact</p>').removeClass("hidden").addClass("alert alert-success");
-						$route.reload();
+						$('#validation').html('<p>You have successfully deleted a contact</p>').removeClass("hidden").addClass("alert alert-success"); 
+						$route.reload(); //refresh page
 					} else {
 						alert(response.data["success"]);
 					}
@@ -123,10 +119,10 @@
 				// Post new Contact
 				$http(req).then(function (response) {
 					if (response.data["success"] === true) {
-						$('#validation').html('<p>You have successfully created a new contact</p>').removeClass("hidden").addClass("alert alert-success");
-						$('form').find('input[type=text]').val('');
+						$('#validation').html('<p>You have successfully created a new contact</p>').removeClass("hidden").addClass("alert alert-success"); //create success message
+						$('form').find('input[type=text], input[type=email], input[type=tel], input[type=url]').val(''); //clear fields
 					} else {
-						alert(response.data["success"]);
+						$('#validation').html('<p>Contact was not saved</p>').removeClass("hidden").addClass("alert alert-danger"); //create success message
 					}
 				}, function (response) {
 					alert('fail');
@@ -137,37 +133,80 @@
 			//#region Reset Create Contact Form
 			$scope.reset = function () {
 				$route.reload();
-				//$scope.first_name = "";
-				//$scope.last_name = "";
-				//$scope.company_name = "";
-				//$scope.address = "";
-				//$scope.city = "";
-				//$scope.state = "";
-				//$scope.zip = "";
-				//$scope.phone = "";
-				//$scope.work_phone = "";
-				//$scope.email = "";
-				//$scope.url = "";
-				//$('#validation').hide();
 			};
 			//#endregion
+		}])
+		.controller('ContactEditCtrl', ['$scope', '$http', '$route', '$routeParams', '$location', function ($scope, $http, $routeParams, $route, $location) {
+			$scope.temp = false;
+
+			//#region GET Contact 
+			//Setup Contact List GET request variable
+			if ($scope.temp === false) {
+
+				var getReq = {
+					method: 'GET',
+					url: 'http://challenge.acstechnologies.com/api/contact/' + $routeParams.current.params['id'],
+					headers: {
+						'X-Auth-Token': 'pkNClPIgOp1Oo3mRmIAJRwVL9QuIpbSLsaYKZ08w',
+						'Origin': undefined
+					}
+				};
+				// Get Contact List and assign to scope
+				$http(getReq).then(function (response) {
+
+					$scope.first_name = response.data.first_name;
+					$scope.last_name = response.data.last_name;
+					$scope.company_name = response.data.company_name;
+					$scope.address = response.data.address;
+					$scope.city = response.data.city;
+					$scope.state = response.data.state;
+					$scope.zip = response.data.zip;
+					$scope.phone = response.data.phone;
+					$scope.work_phone = response.data.work_phone;
+					$scope.email = response.data.email;
+					$scope.url = response.data.url;
+					$scope.temp = true;
+				}, function (response) {
+					alert('fail');
+				});
+			}
+			//#endregion
+
+			//#region PUT Contact
+			$scope.editContact = function () {
+
+				var putReq = {
+					method: 'PUT',
+					url: 'http://challenge.acstechnologies.com/api/contact/' + $routeParams.current.params['id'],
+					headers: {
+						'X-Auth-Token': 'pkNClPIgOp1Oo3mRmIAJRwVL9QuIpbSLsaYKZ08w',
+						'Origin': undefined
+					},
+					data: {
+						"first_name": this.first_name,
+						"last_name": this.last_name,
+						"company_name": this.company_name,
+						"address": this.address,
+						"city": this.city,
+						"state": this.state,
+						"zip": this.zip,
+						"phone": this.phone,
+						"work_phone": this.work_phone,
+						"email": this.email,
+						"url": this.url
+					}
+				};
+
+
+				// Get Contact List and assign to scope
+				$http(putReq).then(function (response) {
+					alert("Contact Saved");
+					$location.path('/View Contact');
+				}, function (response) {
+					alert('fail');
+				});
+			}
+			//#endregion
+
 		}]);
 })();
-
-
-
-//$scope.reset = function () {
-//$route.reload();
-//$scope.first_name = "";
-//$scope.last_name = "";
-//$scope.company_name = "";
-//$scope.address = "";
-//$scope.city = "";
-//$scope.state = "";
-//$scope.zip = "";
-//$scope.phone = "";
-//$scope.work_phone = "";
-//$scope.email = "";
-//$scope.url = "";
-//$('#validation').hide();
-//};
