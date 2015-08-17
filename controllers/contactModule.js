@@ -6,6 +6,7 @@
 		.run([function () {
 			//console.log("Contact Module::running");
 		}])
+		// filter used for paging and search 
 		.filter('startFrom', function () {
 			return function (input, start) {
 				if (input) {
@@ -15,15 +16,29 @@
 				return [];
 			}
 		})
-		.controller('ContactViewCtrl', ['$scope', '$http', 'filterFilter', function ($scope, $http, filterFilter) {
+		// directive creating confirmation message.  must use confirmed-click to call funciton and ng-confirm-click to trigger confirmation box
+		.directive('ngConfirmClick', [function () {
+			return {
+				link: function (scope, element, attr) {
+					var msg = attr.ngConfirmClick || "Are you sure?";
+					var clickAction = attr.confirmedClick;
+					element.bind('click', function (event) {
+						if (window.confirm(msg)) {
+							scope.$eval(clickAction);
+						}
+					});
+				}
+			};
+		}])
+		.controller('ContactViewCtrl', ['$scope', '$http', '$route', 'filterFilter', function ($scope, $http, $route, filterFilter) {
 			//#region Sort Variables
 			$scope.orderByField = 'first_name';
 			$scope.reverseSort = false;
 			//#endregion
 
-			//#region Contact List JSON
+			//#region GET Contact List
 			//Setup Contact List GET request variable
-			var req = {
+			var getReq = {
 				method: 'GET',
 				url: 'http://challenge.acstechnologies.com/api/contact/',
 				headers: {
@@ -32,7 +47,7 @@
 				}
 			};
 			// Get Contact List and assign to scope
-			$http(req).then(function (response) {
+			$http(getReq).then(function (response) {
 				$scope.contactList = response.data.data;
 
 				//#region Paging for contact list
@@ -54,8 +69,34 @@
 				alert('fail');
 			});
 			//#endregion
+
+			//#region DELETE Contact
+			$scope.delete = function (id) {
+				// setup contact DELETE request variable
+				var delReq = {
+					method: 'DELETE',
+					url: 'http://challenge.acstechnologies.com/api/contact/' + id,
+					headers: {
+						'X-Auth-Token': 'pkNClPIgOp1Oo3mRmIAJRwVL9QuIpbSLsaYKZ08w',
+						'Origin': undefined
+					}
+				};
+
+				$http(delReq).then(function (response) {
+					if (response.data["success"] === true) {
+						$('#validation').html('<p>You have successfully deleted a contact</p>').removeClass("hidden").addClass("alert alert-success");
+						$route.reload();
+					} else {
+						alert(response.data["success"]);
+					}
+				}, function (response) {
+					alert('fail');
+				});
+			};
+			//#endregion
 		}])
 		.controller('ContactCreateCtrl', ['$scope', '$http', '$route', function ($scope, $http, $route) {
+			//#region Create Contact
 			$scope.addContact = function () {
 				//setup Contact Create POST request variable
 				var req = {
@@ -90,8 +131,10 @@
 				}, function (response) {
 					alert('fail');
 				});
-
 			};
+			//#endregion
+
+			//#region Reset Create Contact Form
 			$scope.reset = function () {
 				$route.reload();
 				//$scope.first_name = "";
@@ -107,23 +150,24 @@
 				//$scope.url = "";
 				//$('#validation').hide();
 			};
+			//#endregion
 		}]);
 })();
 
 
 
 //$scope.reset = function () {
-	//$route.reload();
-	//$scope.first_name = "";
-	//$scope.last_name = "";
-	//$scope.company_name = "";
-	//$scope.address = "";
-	//$scope.city = "";
-	//$scope.state = "";
-	//$scope.zip = "";
-	//$scope.phone = "";
-	//$scope.work_phone = "";
-	//$scope.email = "";
-	//$scope.url = "";
-	//$('#validation').hide();
+//$route.reload();
+//$scope.first_name = "";
+//$scope.last_name = "";
+//$scope.company_name = "";
+//$scope.address = "";
+//$scope.city = "";
+//$scope.state = "";
+//$scope.zip = "";
+//$scope.phone = "";
+//$scope.work_phone = "";
+//$scope.email = "";
+//$scope.url = "";
+//$('#validation').hide();
 //};

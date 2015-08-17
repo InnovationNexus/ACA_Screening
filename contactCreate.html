@@ -1,13 +1,11 @@
 ﻿<div class="main" ng-controller="ContactCreateCtrl">
 	<div class="container">
-		<form name="createContactForm">
+		<form name="createContactForm" novalidate>
 			<div>
 				<h1>Create Contact</h1>
 			</div>
-			<br />
-			<div id="validation" class="hidden" novalidate>
-			</div>
-
+			<br/>
+			<div id="validation" class="hidden"></div>
 			<div class="row">
 				<div class="col-xs-12 col-md-4">
 					<input ng-model="first_name" class="form-control" name="first_name" placeholder="First Name" type="text" required />

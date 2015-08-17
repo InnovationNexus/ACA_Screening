@@ -4,7 +4,9 @@
 			<div>
 				<h1>Contact Directory</h1>
 				<label>Search: </label>
-				<input id="search" ng-change="filter()" ng-model="search" placeholder="Search for contacts" autofocus />
+				<input id="search" ng-change="filter()" ng-model="search" placeholder="Search for contacts" autofocus/>
+			</div>
+			<div id="validation" class="hidden">
 			</div>
 			<br />
 			<table class="table table-bordered table-hover">
@@ -67,7 +69,7 @@
 					<td>{{c.email}}</td>
 					<td>{{c.url}}</td>
 					<td>edit</td>
-					<td>delete</td>
+					<td><a confirmed-click="delete(c.id)" ng-confirm-click="Are you sure you want to delete {{c.first_name}} {{c.last_name}}?">delete</a></td>
 				</tr>
 			</table>
 			<div>
