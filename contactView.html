@@ -4,7 +4,7 @@
 			<div>
 				<h1>Contact Directory</h1>
 				<label>Search: </label>
-				<input ng-model="search" placeholder="Search for contacts" autofocus />
+				<input id="search" ng-change="filter()" ng-model="search" placeholder="Search for contacts" autofocus />
 			</div>
 			<br />
 			<table class="table table-bordered table-hover">
@@ -51,7 +51,8 @@
 						</a>
 					</th>
 				</tr>
-				<tr ng-repeat="c in filteredContacts | orderBy: orderByField: reverseSort | filter:search">
+				<!--<tr class="alterTable" ng-repeat="c in filteredContacts | filter:search | orderBy: orderByField: reverseSort">-->
+				<tr class="alterTable" ng-repeat="c in filtered | startFrom:(currentPage-1)*entryLimit | limitTo:entryLimit | orderBy: orderByField: reverseSort">
 					<td>
 						{{c.first_name}}
 						<input type="hidden" id="contactID_{{c.id}}" value="{{c.id}}" />
@@ -66,7 +67,10 @@
 				</tr>
 			</table>
 			<div>
-				<pagination total-items="totalItems" ng-model="currentPage" ng-change="pageChanged()" items-per-page="itemsPerPage"></pagination>
+				<pagination total-items="totalItems" ng-model="currentPage" ng-change="pageChanged()" items-per-page="entryLimit" data-boundry-links="true"></pagination>
+				<!--<pagination data-boundary-links="true" data-num-pages="noOfPages" data-current-page="currentPage" max-size="maxSize" class="pagination-small" data-previous-text="&laquo;" data-next-text="&raquo;"></pagination>-->
+
+				<!--<pagination data-boundary-links="true" data-num-pages="noOfPages" data-current-page="currentPage" max-size="maxSize" class="pagination-small" data-previous-text="&laquo;" data-next-text="&raquo;"></pagination>-->
 			</div>
 		</div>
 	</div>

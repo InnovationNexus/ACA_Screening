@@ -99,3 +99,111 @@ from contact module
 					.error(function () {
 						alert('fail');
 					});
+
+
+
+					//temp
+(function () {
+	angular.module('contactModule', ['ui.bootstrap'])
+		.config([function () {
+			//console.log("Contact Module::running");
+		}
+		])
+		.run([function () {
+			//console.log("Contact Module::running");
+		}
+		])
+		.controller('ContactViewCtrl', ['$scope', '$http', function ($scope, $http) {
+			$scope.orderByField = 'first_name';
+			$scope.reverseSort = false;
+
+			//#region Get Contact List JSON
+			//Setup Contact List GET Request
+			var req = {
+				method: 'GET',
+				url: 'http://challenge.acstechnologies.com/api/contact/',
+				headers: {
+					'X-Auth-Token': 'pkNClPIgOp1Oo3mRmIAJRwVL9QuIpbSLsaYKZ08w',
+					'Origin': undefined
+				}
+			};
+			// Get Contact List and assign to scope
+			$http(req).then(function (response) {
+				$scope.contactList = response.data.data;
+
+				//#region Paging - Paging for contact list
+				$scope.itemsPerPage = 10;
+				$scope.currentPage = 1;
+				$scope.totalItems = $scope.contactList.length;
+
+				$scope.pageCount = function () {
+					return Math.ceil($scope.contactList.length / $scope.itemsPerPage);
+				};
+
+				$scope.$watch('currentPage + itemsPerPage', function () {
+					var begin = (($scope.currentPage - 1) * $scope.itemsPerPage), end = begin + $scope.itemsPerPage;
+					$scope.filteredContacts = $scope.contactList.slice(begin, end);
+				});
+				//#endregion
+			}, function (response) {
+				alert('fail');
+			});
+			//#endregion
+		}])
+		.controller('ContactCreateCtrl', ['$scope', '$http', function ($scope, $http) {
+			$scope.addContact = function () {
+				//setup Contact Create POST Request
+				var req = {
+					method: 'POST',
+					url: 'http://challenge.acstechnologies.com/api/contact/',
+					headers: {
+						'X-Auth-Token': 'pkNClPIgOp1Oo3mRmIAJRwVL9QuIpbSLsaYKZ08w',
+						'Origin': undefined
+					},
+					data: {
+						"first_name": $scope.first_name,
+						"last_name": $scope.last_name,
+						"company_name": $scope.company_name,
+						"address": $scope.address,
+						"city": $scope.city,
+						"state": $scope.state,
+						"zip": $scope.zip,
+						"phone": $scope.phone,
+						"work_phone": $scope.work_phone,
+						"email": $scope.email,
+						"url": $scope.url
+					}
+				};
+
+				$http(req).then(function (response) {
+
+					if (response.data["success"] === false) {
+						console.log(response.data["errors"]["first_name"]);
+
+						//for (var i = 0; i < response.data["errors"].length; i++) {
+						//	alert('test');
+						//}
+					} else {
+						$('#validation').append('<p>You have successfully created a new contact</p>').removeClass("hidden").addClass("alert alert-success");
+					}
+				}, function (response) {
+					alert('fail');
+				});
+			};
+
+			//$scope.reset = function () {
+			//	$scope.first_name = "";
+			//			"last_name": $scope.last_name,
+			//			"company_name": $scope.company_name,
+			//			"address": $scope.address,
+			//			"city": $scope.city,
+			//			"state": $scope.state,
+			//			"zip": $scope.zip,
+			//			"phone": $scope.phone,
+			//			"work_phone": $scope.work_phone,
+			//			"email": $scope.email,
+			//			"url": $scope.url
+			//	$('#validation').hide();
+			//};
+		}]);
+})();

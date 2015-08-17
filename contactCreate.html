@@ -1,0 +1,62 @@
+﻿<div class="main" ng-controller="ContactCreateCtrl">
+	<div class="container">
+		<form>
+			<div>
+				<h1>Create Contact</h1>
+			</div>
+			<br />
+			<div id="validation" class="hidden">
+			</div>
+
+			<div class="row">
+				<div class="col-xs-12 col-md-4">
+					<input ng-model="first_name" class="form-control" name="first_name" placeholder="First Name" type="text" />
+				</div>
+				<div class="col-xs-12 col-md-4">
+					<input ng-model="last_name" class="form-control" name="last_name" placeholder="Last Name" type="text" />
+				</div>
+				<div class="col-xs-12 col-md-4">
+					<input ng-model="company_name" class="form-control" name="company_name" placeholder="Company Name" type="text" />
+				</div>
+			</div>
+			<br />
+			<div class="row">
+				<div class="col-xs-12 col-md-5">
+					<input ng-model="address" class="form-control" name="address" placeholder="Address" type="text" />
+				</div>
+				<div class="col-xs-12 col-md-3">
+					<input ng-model="city" class="form-control" name="city" placeholder="City" type="text" />
+				</div>
+				<div class="col-xs-12 col-md-2">
+					<input ng-model="state" class="form-control" name="state" placeholder="State" type="text" />
+				</div>
+				<div class="col-xs-12 col-md-2">
+					<input ng-model="zip" class="form-control" name="zip" placeholder="Zip Code" type="text" />
+				</div>
+			</div>
+			<br />
+			<div class="row">
+				<div class="col-xs-12 col-md-2">
+					<input ng-model="phone" class="form-control" name="phone" placeholder="Phone" type="text" />
+				</div>
+				<div class="col-xs-12 col-md-2">
+					<input ng-model="work_phone" class="form-control" name="work_phone" placeholder="Work Phone" type="text" />
+				</div>
+				<div class="col-xs-12 col-md-4">
+					<input ng-model="email" class="form-control" name="email" placeholder="Email" type="text" />
+				</div>
+				<div class="col-xs-12 col-md-4">
+					<input ng-model="url" class="form-control" name="url" placeholder="URL" type="text" />
+				</div>
+			</div>
+			<br />
+			<div class="row">
+				<div class="col-sm-12 col-md-12">
+					<a ng-click="addContact($event)" class="btn send btn-primary">Create Contact</a>
+					<input type="reset" class="btn btn-primary" id="reset" value="Reset" />
+					<!--<a ng-click="reset" class="btn btn-primary">Reset</a>-->
+				</div>
+			</div>
+		</form>
+	</div>
+</div>

@@ -9,7 +9,11 @@
 			templateUrl: 'contactView.html',
 			controller: 'ContactViewCtrl'
 		}).
-		when('/about', {
+		when('/Create Contact', {
+			templateUrl: 'contactCreate.html',
+			controller: 'ContactCreateCtrl'
+		}).
+		when('/About', {
 			templateUrl: 'about.html',
 			controller: 'AboutCtrl'
 		}).
