@@ -5,16 +5,21 @@
 				<h1>Create Contact</h1>
 			</div>
 			<br />
-			<div id="validation" class="hidden">
+			<div id="validation" class="hidden" novalidate>
 			</div>
 
 			<div class="row">
 				<div class="col-xs-12 col-md-4">
 					<input ng-model="first_name" class="form-control" name="first_name" placeholder="First Name" type="text" required />
-					<span style="color: red" ng-show="createContactForm.first_name.$dirty && createContactForm.first_name.$invalid"><span ng-show="createContactForm.first_name.$error.required">First Name is required.</span></span>
+					<span style="color: red" ng-show="createContactForm.first_name.$dirty && createContactForm.first_name.$invalid">
+						<span ng-show="createContactForm.first_name.$error.required">First Name is required.</span>
+					</span>
 				</div>
 				<div class="col-xs-12 col-md-4">
-					<input ng-model="last_name" class="form-control" name="last_name" placeholder="Last Name" type="text" />
+					<input ng-model="last_name" class="form-control" name="last_name" placeholder="Last Name" type="text" required />
+					<span style="color: red" ng-show="createContactForm.last_name.$dirty && createContactForm.last_name.$invalid">
+						<span ng-show="createContactForm.last_name.$error.required">Last Name is required.</span>
+					</span>
 				</div>
 				<div class="col-xs-12 col-md-4">
 					<input ng-model="company_name" class="form-control" name="company_name" placeholder="Company Name" type="text" />
@@ -23,38 +28,62 @@
 			<br />
 			<div class="row">
 				<div class="col-xs-12 col-md-5">
-					<input ng-model="address" class="form-control" name="address" placeholder="Address" type="text" />
+					<input ng-model="address" class="form-control" name="address" placeholder="Address" type="text" required />
+					<span style="color: red" ng-show="createContactForm.address.$dirty && createContactForm.address.$invalid">
+						<span ng-show="createContactForm.address.$error.required">Address is required.</span>
+					</span>
 				</div>
 				<div class="col-xs-12 col-md-3">
-					<input ng-model="city" class="form-control" name="city" placeholder="City" type="text" />
+					<input ng-model="city" class="form-control" name="city" placeholder="City" type="text" required />
+					<span style="color: red" ng-show="createContactForm.city.$dirty && createContactForm.city.$invalid">
+						<span ng-show="createContactForm.city.$error.required">City is required.</span>
+					</span>
 				</div>
 				<div class="col-xs-12 col-md-2">
-					<input ng-model="state" class="form-control" name="state" placeholder="State" type="text" />
+					<input ng-model="state" class="form-control" name="state" placeholder="State" type="text" required />
+					<span style="color: red" ng-show="createContactForm.state.$dirty && createContactForm.state.$invalid">
+						<span ng-show="createContactForm.state.$error.required">State is required.</span>
+					</span>
 				</div>
 				<div class="col-xs-12 col-md-2">
-					<input ng-model="zip" class="form-control" name="zip" placeholder="Zip Code" type="text" />
+					<input ng-model="zip" class="form-control" name="zip" placeholder="Zip Code" type="number" required />
+					<span style="color: red" ng-show="createContactForm.zip.$dirty && createContactForm.zip.$invalid">
+						<span ng-show="createContactForm.zip.$error.required">Zip code is required.</span>
+						<span ng-show="createContactForm.email.$error.email">Zip code must be numeric.</span>
+					</span>
 				</div>
 			</div>
 			<br />
 			<div class="row">
 				<div class="col-xs-12 col-md-2">
-					<input ng-model="phone" class="form-control" name="phone" placeholder="Phone" type="text" />
+					<input ng-model="phone" class="form-control" name="phone" placeholder="Phone" type="tel" required />
+					<span style="color: red" ng-show="createContactForm.phone.$dirty && createContactForm.phone.$invalid">
+						<span ng-show="createContactForm.phone.$error.required">Phone number is required.</span>
+						<span ng-show="createContactForm.email.$error.email">Not a valid phone number.</span>
+					</span>
 				</div>
 				<div class="col-xs-12 col-md-2">
-					<input ng-model="work_phone" class="form-control" name="work_phone" placeholder="Work Phone" type="text" />
+					<input ng-model="work_phone" class="form-control" name="work_phone" placeholder="Work Phone" type="tel" />
 				</div>
 				<div class="col-xs-12 col-md-4">
-					<input ng-model="email" class="form-control" name="email" placeholder="Email" type="text" />
+					<input ng-model="email" class="form-control" name="email" placeholder="Email" type="email" required />
+					<span style="color: red" ng-show="createContactForm.email.$dirty && createContactForm.email.$invalid">
+						<span ng-show="createContactForm.email.$error.required">Email is required.</span>
+						<span ng-show="createContactForm.email.$error.email">Not a valid email.</span>
+					</span>
 				</div>
 				<div class="col-xs-12 col-md-4">
-					<input ng-model="url" class="form-control" name="url" placeholder="URL" type="text" />
+					<input ng-model="url" class="form-control" name="url" placeholder="URL" type="url" />
+					<span style="color: red" ng-show="createContactForm.phone.$dirty && createContactForm.phone.$invalid">
+						<span ng-show="createContactForm.email.$error.email">Not a valid phone url.</span>
+					</span>
 				</div>
 			</div>
 			<br />
 			<div class="row">
 				<div class="col-sm-12 col-md-12">
-					<a ng-click="addContact($event)" class="btn send btn-primary" ng-disabled="createContactForm.first_name.$dirty && createContactForm.first_name.$invalid  || createContactForm.first_name.$pristine">Create Contact</a>
-					<input type="reset" class="btn btn-primary" id="reset" value="Reset" />
+					<a ng-click="addContact($event)" class="btn send btn-primary" ng-disabled="(createContactForm.first_name.$dirty && createContactForm.first_name.$invalid  || createContactForm.first_name.$pristine) || (createContactForm.last_name.$dirty && createContactForm.last_name.$invalid  || createContactForm.last_name.$pristine)  || (createContactForm.address.$dirty && createContactForm.address.$invalid  || createContactForm.address.$pristine) || (createContactForm.city.$dirty && createContactForm.city.$invalid  || createContactForm.city.$pristine) || (createContactForm.state.$dirty && createContactForm.state.$invalid  || createContactForm.state.$pristine) || (createContactForm.zip.$dirty && createContactForm.zip.$invalid  || createContactForm.zip.$pristine) || (createContactForm.phone.$dirty && createContactForm.phone.$invalid  || createContactForm.phone.$pristine) || (createContactForm.email.$dirty && createContactForm.email.$invalid  || createContactForm.email.$pristine)">Create Contact</a>
+					<input type="reset" class="btn btn-primary" id="reset" value="Reset" ng-click="reset()" />
 				</div>
 			</div>
 		</form>

@@ -6,8 +6,8 @@
 		.run([function () {
 			//console.log("Contact Module::running");
 		}])
-		.filter('startFrom', function() {
-			return function(input, start) {
+		.filter('startFrom', function () {
+			return function (input, start) {
 				if (input) {
 					start = +start;
 					return input.slice(start);
@@ -55,7 +55,7 @@
 			});
 			//#endregion
 		}])
-		.controller('ContactCreateCtrl', ['$scope', '$http', function ($scope, $http) {
+		.controller('ContactCreateCtrl', ['$scope', '$http', '$route', function ($scope, $http, $route) {
 			$scope.addContact = function () {
 				//setup Contact Create POST request variable
 				var req = {
@@ -84,10 +84,28 @@
 					if (response.data["success"] === true) {
 						$('#validation').html('<p>You have successfully created a new contact</p>').removeClass("hidden").addClass("alert alert-success");
 						$('form').find('input[type=text]').val('');
+					} else {
+						alert(response.data["success"]);
 					}
 				}, function (response) {
 					alert('fail');
 				});
+
+			};
+			$scope.reset = function () {
+				$route.reload();
+				//$scope.first_name = "";
+				//$scope.last_name = "";
+				//$scope.company_name = "";
+				//$scope.address = "";
+				//$scope.city = "";
+				//$scope.state = "";
+				//$scope.zip = "";
+				//$scope.phone = "";
+				//$scope.work_phone = "";
+				//$scope.email = "";
+				//$scope.url = "";
+				//$('#validation').hide();
 			};
 		}]);
 })();
@@ -95,30 +113,17 @@
 
 
 //$scope.reset = function () {
-//	$scope.first_name = "";
-//			"last_name": $scope.last_name,
-//			"company_name": $scope.company_name,
-//			"address": $scope.address,
-//			"city": $scope.city,
-//			"state": $scope.state,
-//			"zip": $scope.zip,
-//			"phone": $scope.phone,
-//			"work_phone": $scope.work_phone,
-//			"email": $scope.email,
-//			"url": $scope.url
-//	$('#validation').hide();
+	//$route.reload();
+	//$scope.first_name = "";
+	//$scope.last_name = "";
+	//$scope.company_name = "";
+	//$scope.address = "";
+	//$scope.city = "";
+	//$scope.state = "";
+	//$scope.zip = "";
+	//$scope.phone = "";
+	//$scope.work_phone = "";
+	//$scope.email = "";
+	//$scope.url = "";
+	//$('#validation').hide();
 //};
-
-
-//submit form to trigger validation
-//$('form').submit();
-
-////setup validation
-
-//$('form').validate({
-//	rules: {
-//		first_name: {
-//			required:true	
-//		}
-//	}
-//});
