@@ -1,0 +1,218 @@
+﻿
+.border-radius
+{
+    border-radius: 4px;
+}
+
+.btn-border-radius
+{
+    border-radius: 15px;
+}
+
+.info_container
+{
+    font-size: medium;
+}
+
+.eligibilityModal
+{
+    padding: 5px 20px 5px 20px;
+    z-index: 1400;
+    width: 770px;
+    height: 460px;
+    background-color: white;
+    border: 3px solid #2c3e50;
+    border-radius: 4px 4px 4px 4px; /*     top: 40%;     left: 30.75%;     position: absolute; */
+}
+
+.spanPrivacyIcon
+{
+    position: absolute;
+    right: 100px;
+}
+
+.center-this
+{
+    margin: auto;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: fixed;
+}
+
+.scroll-auto
+{
+    overflow-y: auto;
+}
+
+.divPrivacyInfo
+{
+    padding: 5px 20px 5px 20px;
+    z-index: 400;
+    height: 300px;
+    width: 400px;
+    overflow-y: auto;
+    border: 3px solid #2c3e50;
+    background-color: white;
+    margin: auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    position: fixed; /*   position: absolute;     overflow-y:scroll;     top: 90%;     left: 70%; */
+    border-radius: 4px 4px 4px 4px; /* */
+}
+
+.validation
+{
+    color: Red;
+    width: 400px;
+    margin: 0 auto; /*     padding: 5px 20px 5px 20px;     z-index: 400;     width: 400px;     position: absolute; border: 3px solid #2c3e50;     background-color: white;         top: 36%;     left: 85%;     border-radius: 4px 4px 4px 4px; */
+}
+
+.shader
+{
+    z-index: 200;
+    background-color: Gray;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    filter: Alpha(opacity=70);
+    opacity: 0.7;
+    display:none;
+    
+}
+
+.divQuestions
+{
+    /*     top: 25%;     left: 30%;     position: absolute; */
+    z-index: 1300;
+    width: 800px;
+    height: 600px;
+    background-color: white;
+    border: 3px solid #2c3e50;
+}
+
+#divQuestions
+{
+    width: 394px;
+    height: 300px;
+}
+
+.divStart
+{
+    z-index: 100;
+    padding: 10px 0px 0px 0px;
+    width: 800px;
+    position: relative;
+    background-color: #f0f8ff;
+    margin-top: 25px;
+}
+/*
+.divSuccess
+{
+    z-index: 100;
+    width: 800px;    
+    background-color: #f0f8ff;
+    margin-top: 25px;
+    padding: 10px;
+}
+*/
+.divSuccess
+{
+    width: 800px;
+    background-color: #f0f8ff;
+    margin-top: 25px;
+    padding: 10px;
+}
+.instructions-control
+{
+    width: 1000px;
+    padding: 4px 6px 4px 6px;
+}
+
+#instructionParagraph
+{
+    padding: 0px 0px 0px 10px;
+}
+
+.form-group-custom
+{
+    margin-bottom: 15px;
+    width: 100%;
+    padding: 0px 0px 0px 0px;
+    margin: 0px 0px 0px 0px;
+}
+.cust-input
+{
+    width: 200px;
+}
+.bg-custom
+{
+    padding: 0px 5px 0px 14px;
+    height: 40px;
+}
+.progress_bar_percent
+{
+    position: absolute;
+    text-align: left;
+}
+.explanationContainer
+{
+    /*     position: absolute;     top: 160px;     left: 490px; */
+    width: 380px;
+    min-height: 300px;
+    background-color: #ffffc2;
+    margin-right: 6px;
+    padding: 15px;
+}
+
+.invalidEmpCdWarn
+{
+    width: 300px;
+    height: 200px;
+    z-index: 1300;
+    background-color: White;
+    border: 3px solid #2c3e50;
+    overflow-y: auto;
+}
+
+.padding10
+{
+    display: block;
+    padding: 10px;
+}
+
+/*
+style="width: 300px; height: 200px; z-index: 1300;
+		position: absolute; top: 250px; left: 400px; background-color: #FFFA00;"
+*/
+div.modal-alert 
+{
+    border: 3px solid black;
+    background-color: White;
+    z-index: 1300;
+    position: fixed;
+    margin: auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 300px;
+    height: 200px;
+    filter: Alpha(opacity=100);
+    opacity: 1.0;
+}
+
+.divIncomeCalc
+{
+    z-index:2000;
+    height:700px;
+    width:1000px;
+    background-color:#f0f8ff;
+    border:3px solid #2c3e50;
+
+}
